@@ -1,5 +1,5 @@
 package com.nnk.springboot;
-
+/*
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
 import org.junit.Assert;
@@ -18,7 +18,7 @@ public class RuleTests {
 
 	@Autowired
 	private RuleNameRepository ruleNameRepository;
-/*
+
 	@Test
 	public void ruleTest() {
 		RuleName rule = new RuleName("Rule Name", "Description", "Json", "Template", "SQL", "SQL Part");
@@ -42,5 +42,6 @@ public class RuleTests {
 		ruleNameRepository.delete(rule);
 		Optional<RuleName> ruleList = ruleNameRepository.findById(id);
 		Assert.assertFalse(ruleList.isPresent());
-	}*/
+	}
 }
+*/

@@ -1,5 +1,5 @@
 package com.nnk.springboot;
-
+/*
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import org.junit.Assert;
@@ -18,7 +18,7 @@ public class CurvePointTests {
 
 	@Autowired
 	private CurvePointRepository curvePointRepository;
-/*
+
 	@Test
 	public void curvePointTest() {
 		CurvePoint curvePoint = new CurvePoint(10, 10d, 30d);
@@ -42,6 +42,6 @@ public class CurvePointTests {
 		curvePointRepository.delete(curvePoint);
 		Optional<CurvePoint> curvePointList = curvePointRepository.findById(id);
 		Assert.assertFalse(curvePointList.isPresent());
-	}*/
+	}
 
-}
+}*/
