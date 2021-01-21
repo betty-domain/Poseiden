@@ -16,6 +16,7 @@ public class LoginController {
 
     @GetMapping("login")
     public ModelAndView login() {
+        //TODO : comment rediriger vers la page de login créer par Spring Security (formlogin())?
         ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
         return mav;
