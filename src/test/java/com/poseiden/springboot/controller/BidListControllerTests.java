@@ -1,6 +1,5 @@
 package com.poseiden.springboot.controller;
 
-import com.poseiden.springboot.TestsUtils;
 import com.poseiden.springboot.domain.BidList;
 import com.poseiden.springboot.repositories.BidListRepository;
 import org.junit.jupiter.api.Disabled;
@@ -66,7 +65,10 @@ class BidListControllerTests {
         bidList.setType("myType");
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/bidList/validate").
-                contentType(MediaType.APPLICATION_JSON).content(TestsUtils.asJsonString(bidList));
+                contentType(MediaType.APPLICATION_JSON).
+                param("account",bidList.getAccount()).
+                param("type",bidList.getType()).
+                param("bid",bidList.getBid().toString());
 
         mockMvc.perform(builder).
                 andExpect(status().isOk()).
@@ -143,7 +145,10 @@ class BidListControllerTests {
         bidList.setType("myType");
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/bidList/update/{id}",5).
-                contentType(MediaType.APPLICATION_JSON).content(TestsUtils.asJsonString(bidList));
+                contentType(MediaType.APPLICATION_JSON).
+                param("account",bidList.getAccount()).
+                param("type",bidList.getType()).
+                param("bid",bidList.getBid().toString());
 
         mockMvc.perform(builder).
                 andExpect(status().isOk()).
