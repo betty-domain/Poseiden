@@ -1,3 +1,7 @@
+DROP SCHEMA if exists `poseiden`;
+
+CREATE SCHEMA if not exists `poseiden`;
+
 use `poseiden`;
 
 CREATE TABLE BidList (
