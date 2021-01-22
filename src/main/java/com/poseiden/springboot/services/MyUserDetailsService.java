@@ -9,12 +9,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Custom MyUserDetailsService used to authenticate user with user in database
+ */
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * load user in DB by username
+     * @param username username of searched user
+     * @return found user
+     * @throws UsernameNotFoundException if user is not found
+     */
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsernameIgnoreCase(username);

@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Class to Override Default Spring Configuration
+ */
 @Configuration
 @EnableWebSecurity
 public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -19,6 +22,10 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
+    /**
+     * Override Default Authentication Provider. Set custon UserDetailsService and PasswordEncoder
+     * @return Custom DaoAuthentication Provider
+     */
     @Bean
     public AuthenticationProvider authProvider()
     {
@@ -28,12 +35,21 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-
+    /**
+     * Register the custom Authentication Provider into the AuthenticationManagerBuilder
+     * @param auth AuthenticationManagerBuilder
+     * @throws Exception if an error occurs
+     */
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.authenticationProvider(authProvider());
     }
 
+    /**
+     * Define which URL paths sould be secured and which should not.
+     * @param http HttpSecurity to configure
+     * @throws Exception if an error occurs
+     */
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
