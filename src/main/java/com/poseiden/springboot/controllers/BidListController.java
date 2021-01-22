@@ -24,6 +24,7 @@ public class BidListController {
 
     /**
      * Return bidList's List page content
+     *
      * @param model list of BidList
      * @return bidList's List page
      */
@@ -36,6 +37,7 @@ public class BidListController {
 
     /**
      * Return the add bidList page
+     *
      * @param bid bidList entity to add
      * @return add bidList page
      */
@@ -46,25 +48,28 @@ public class BidListController {
 
     /**
      * Create a bidList if valid
-     * @param bid bidList to create
+     *
+     * @param bid    bidList to create
      * @param result contains errors if bidList is not valid
-     * @param model list of BidList
+     * @param model  list of BidList
      * @return list of BidList page if added bidList is valid, stay at bidList/add page otherwise
      */
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // DONE: check data valid and save to db, after saving return bid list
-        if (!result.hasErrors()) {
-            bidListRepository.save(bid);
-            model.addAttribute("bidLists", bidListRepository.findAll());
-            return "redirect:/bidList/list";
+        if (result.hasErrors()) {
+            return "bidList/add";
         }
-        return "bidList/add";
+        bidListRepository.save(bid);
+        model.addAttribute("bidLists", bidListRepository.findAll());
+        return "redirect:/bidList/list";
+
     }
 
     /**
      * Return filled update BidList page for a specific bidList
-     * @param id id of bidList to update
+     *
+     * @param id    id of bidList to update
      * @param model bidList to Update
      * @return update BidList page, can throw IllegalArgumentException if id of bidList is invalid
      */
@@ -78,10 +83,11 @@ public class BidListController {
 
     /**
      * Update a bidList if valid
-     * @param id if of bidlist to update
+     *
+     * @param id      if of bidlist to update
      * @param bidList bidList with modified values
-     * @param result contains errors if bidlist is not invalid
-     * @param model list of BidList
+     * @param result  contains errors if bidlist is not invalid
+     * @param model   list of BidList
      * @return list of BidList page if updated bidList is valid, stay at bidList/update page otherwise
      */
     @PostMapping("/bidList/update/{id}")
@@ -98,7 +104,8 @@ public class BidListController {
 
     /**
      * Delete bidList by Id
-     * @param id id of bidList to delete
+     *
+     * @param id    id of bidList to delete
      * @param model List of bidList if id is valid
      * @return BidList's List page if id is valid, throw IllegalArgumentException otherwise
      */
