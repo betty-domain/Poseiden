@@ -2,7 +2,6 @@ package com.poseiden.springboot.controller;
 
 import com.poseiden.springboot.domain.BidList;
 import com.poseiden.springboot.repositories.BidListRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
@@ -122,8 +121,6 @@ class BidListControllerTests {
     }
 
     @Test
-    @Disabled
-    //TODO à revoir comment vérifier 'lexception levé
     void get_bidlist_update_ThrowIllegalArgumentException() throws Exception
     {
 
@@ -132,8 +129,7 @@ class BidListControllerTests {
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/bidList/update/{id}",5).
                 contentType(MediaType.APPLICATION_JSON);
 
-        mockMvc.perform(builder).
-                andExpect(mvcResult -> assertTrue(mvcResult.getResolvedException() instanceof IllegalArgumentException));
+        assertThatThrownBy(() -> mockMvc.perform(builder)).hasCause(new IllegalArgumentException("Invalid bidList Id:5"));
 
     }
 
@@ -201,8 +197,6 @@ class BidListControllerTests {
     }
 
     @Test
-    @Disabled
-        //TODO à revoir comment vérifier 'lexception levé
     void get_bidlist_delete_ThrowIllegalArgumentException() throws Exception
     {
 
@@ -211,8 +205,8 @@ class BidListControllerTests {
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/bidList/delete/{id}",5).
                 contentType(MediaType.APPLICATION_JSON);
 
-        mockMvc.perform(builder).
-                andExpect(mvcResult -> assertTrue(mvcResult.getResolvedException() instanceof IllegalArgumentException));
+        assertThatThrownBy(() -> mockMvc.perform(builder)).hasCause(new IllegalArgumentException("Invalid bidList Id:5"));
+
 
     }
 }
