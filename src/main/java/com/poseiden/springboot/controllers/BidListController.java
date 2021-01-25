@@ -1,7 +1,7 @@
 package com.poseiden.springboot.controllers;
 
 import com.poseiden.springboot.domain.BidList;
-import com.poseiden.springboot.repositories.BidListRepository;
+import com.poseiden.springboot.services.IBidListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ import javax.validation.Valid;
 public class BidListController {
 
     @Autowired
-    private BidListRepository bidListRepository;
+    private IBidListService bidListService;
 
     /**
      * Return bidList's List page content
@@ -31,7 +31,7 @@ public class BidListController {
     @RequestMapping("/bidList/list")
     public String home(Model model) {
         // DONE: call service find all bids to show to the view
-        model.addAttribute("bidLists", bidListRepository.findAll());
+        model.addAttribute("bidLists", bidListService.findAll());
         return "bidList/list";
     }
 
@@ -60,8 +60,8 @@ public class BidListController {
         if (result.hasErrors()) {
             return "bidList/add";
         }
-        bidListRepository.save(bid);
-        model.addAttribute("bidLists", bidListRepository.findAll());
+        bidListService.save(bid);
+        model.addAttribute("bidLists", bidListService.findAll());
         return "redirect:/bidList/list";
 
     }
@@ -76,7 +76,7 @@ public class BidListController {
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // DONE: get Bid by Id and to model then show to the form
-        BidList bidList = bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
+        BidList bidList = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
         model.addAttribute("bidList", bidList);
         return "bidList/update";
     }
@@ -97,8 +97,8 @@ public class BidListController {
         if (result.hasErrors()) {
             return "bidList/update";
         }
-        bidListRepository.save(bidList);
-        model.addAttribute("bidLists", bidListRepository.findAll());
+        bidListService.save(bidList);
+        model.addAttribute("bidLists", bidListService.findAll());
         return "redirect:/bidList/list";
     }
 
@@ -112,9 +112,9 @@ public class BidListController {
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // DONE: Find Bid by Id and delete the bid, return to Bid list
-        BidList bidList = bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
-        bidListRepository.delete(bidList);
-        model.addAttribute("bidLists", bidListRepository.findAll());
+        BidList bidList = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
+        bidListService.delete(bidList);
+        model.addAttribute("bidLists", bidListService.findAll());
         return "redirect:/bidList/list";
     }
 }
