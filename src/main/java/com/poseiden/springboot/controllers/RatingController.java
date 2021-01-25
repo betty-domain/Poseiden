@@ -55,8 +55,13 @@ public class RatingController {
      */
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Rating list
-        return "rating/add";
+        // DONE: check data valid and save to db, after saving return Rating list
+        if (result.hasErrors()) {
+            return "rating/add";
+        }
+        ratingService.save(rating);
+        model.addAttribute("ratingList",ratingService.findAll());
+        return "redirect:/rating/list";
     }
 
     /**

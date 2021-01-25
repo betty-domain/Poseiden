@@ -28,7 +28,7 @@ public class RatingService implements IRatingService {
 
     @Override
     public Rating save(final Rating rating) {
-        return null;
+        return ratingRepository.save(rating);
     }
 
     @Override
