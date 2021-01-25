@@ -127,7 +127,7 @@ public class RatingControllerTests {
     void post_rating_update_ResultHasErrors() throws Exception {
         Rating rating = new Rating("moody","sandRating","fitchRating",null);
 
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/rating/update/{id}").
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/rating/update/{id}",5).
                 contentType(MediaType.APPLICATION_JSON).
                 param("moodyRating",rating.getMoodyRating()).
                 param("sandRating", rating.getSandRating()).

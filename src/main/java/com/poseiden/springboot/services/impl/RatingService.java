@@ -1,7 +1,9 @@
 package com.poseiden.springboot.services.impl;
 
 import com.poseiden.springboot.domain.Rating;
+import com.poseiden.springboot.repositories.RatingRepository;
 import com.poseiden.springboot.services.IRatingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,9 +16,14 @@ import java.util.Optional;
 @Transactional
 @Service
 public class RatingService implements IRatingService {
+
+    @Autowired
+    RatingRepository ratingRepository;
+
     @Override
     public List<Rating> findAll() {
-        return null;
+
+        return ratingRepository.findAll();
     }
 
     @Override
