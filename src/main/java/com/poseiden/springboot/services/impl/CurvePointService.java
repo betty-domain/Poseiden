@@ -31,11 +31,11 @@ public class CurvePointService implements ICurvePointService {
 
     @Override
     public Optional<CurvePoint> findById(final Integer id) {
-        return Optional.empty();
+        return curvePointRepository.findById(id);
     }
 
     @Override
     public void delete(final CurvePoint curvePoint) {
-
+        curvePointRepository.delete(curvePoint);
     }
 }

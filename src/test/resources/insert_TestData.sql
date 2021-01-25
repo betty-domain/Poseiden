@@ -1,4 +1,4 @@
-use `poseiden`;
+use `poseiden_test`;
 TRUNCATE bidlist ;
 TRUNCATE curvepoint;
 
