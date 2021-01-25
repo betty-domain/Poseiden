@@ -110,7 +110,10 @@ public class RatingController {
      */
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Rating by Id and delete the Rating, return to Rating list
+        // DONE: Find Rating by Id and delete the Rating, return to Rating list
+        Rating rating = ratingService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+        ratingService.delete(rating);
+        model.addAttribute("ratingList",ratingService.findAll());
         return "redirect:/rating/list";
     }
 }

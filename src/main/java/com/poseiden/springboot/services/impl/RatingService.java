@@ -38,6 +38,6 @@ public class RatingService implements IRatingService {
 
     @Override
     public void delete(final Rating rating) {
-
+        ratingRepository.delete(rating);
     }
 }
