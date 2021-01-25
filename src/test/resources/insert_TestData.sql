@@ -2,6 +2,7 @@ use `poseiden_test`;
 TRUNCATE bidlist ;
 TRUNCATE curvepoint;
 TRUNCATE rating;
+TRUNCATE rulename;
 
 /*insert bidList*/
 INSERT INTO `bidlist` (`account`, `type`, `bidQuantity`)
@@ -23,5 +24,12 @@ INSERT INTO `rating`( `moodysRating`, `sandPRating`, `fitchRating`, `orderNumber
 VALUES ('moody Rating 1','','fitch rating 1',1);
 INSERT INTO `rating`( `moodysRating`, `sandPRating`, `fitchRating`, `orderNumber`)
 VALUES ('','sand Rating 2','fitch rating aertez jdhjk ',3);
+
+/*insert rulename*/
+
+INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sqlPart`)
+VALUES ('name 1','description rule 1', null,null,null,null); /*id=1*/
+INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sqlPart`)
+VALUES ('name rule 2','description rule to delete', 'json','template','sqlStr','sqlPart');/*id=2*/
 
 

@@ -1,8 +1,8 @@
 package com.poseiden.springboot.repositories;
-/*
-import com.nnk.springboot.domain.RuleName;
+
+import com.poseiden.springboot.domain.RuleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface RuleNameRepository extends JpaRepository<RuleName, Integer> {
-}*/
+}
