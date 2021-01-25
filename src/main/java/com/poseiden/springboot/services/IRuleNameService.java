@@ -31,7 +31,7 @@ public interface IRuleNameService {
 
     /**
      * Delete RuleName
-     * @param rating entity to delete
+     * @param ruleName entity to delete
      */
-    void delete(RuleName rating);
+    void delete(RuleName ruleName);
 }
