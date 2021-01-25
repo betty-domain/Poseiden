@@ -33,7 +33,7 @@ public class RatingService implements IRatingService {
 
     @Override
     public Optional<Rating> findById(final Integer id) {
-        return Optional.empty();
+        return ratingRepository.findById(id);
     }
 
     @Override

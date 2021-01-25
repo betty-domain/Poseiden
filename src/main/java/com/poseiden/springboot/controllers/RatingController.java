@@ -73,7 +73,10 @@ public class RatingController {
      */
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Rating by Id and to model then show to the form
+        // DONE: get Rating by Id and to model then show to the form
+        Rating rating = ratingService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+        model.addAttribute("rating", rating);
+
         return "rating/update";
     }
 
@@ -89,7 +92,12 @@ public class RatingController {
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Rating and return Rating list
+        // DONE: check required fields, if valid call service to update Rating and return Rating list
+        if (result.hasErrors()) {
+            return "rating/update";
+        }
+        ratingService.save(rating);
+        model.addAttribute("ratingList",ratingService.findAll());
         return "redirect:/rating/list";
     }
 
