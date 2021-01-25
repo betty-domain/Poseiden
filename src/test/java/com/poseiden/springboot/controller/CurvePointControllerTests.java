@@ -142,6 +142,7 @@ public class CurvePointControllerTests {
     @Test
     void post_curvePoint_update_isOk_RedirectToBidList() throws Exception {
         CurvePoint curvePoint = new CurvePoint(20,36.5,26.5);
+        curvePoint.setId(5);
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/curvePoint/update/{id}", 5).
                 contentType(MediaType.APPLICATION_JSON).
