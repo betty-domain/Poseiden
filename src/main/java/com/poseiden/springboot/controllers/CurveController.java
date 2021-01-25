@@ -33,8 +33,13 @@ public class CurveController {
 
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Curve list
-        return "curvePoint/add";
+        // DONE: check data valid and save to db, after saving return Curve list
+        if (result.hasErrors()) {
+            return "curvePoint/add";
+        }
+        curvePointService.save(curvePoint);
+        model.addAttribute("curvePointList", curvePointService.findAll());
+        return "redirect:/curvePoint/list";
     }
 
     @GetMapping("/curvePoint/update/{id}")

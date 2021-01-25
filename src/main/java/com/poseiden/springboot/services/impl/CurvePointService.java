@@ -26,7 +26,7 @@ public class CurvePointService implements ICurvePointService {
 
     @Override
     public CurvePoint save(final CurvePoint curvePoint) {
-        return null;
+        return curvePointRepository.save(curvePoint);
     }
 
     @Override

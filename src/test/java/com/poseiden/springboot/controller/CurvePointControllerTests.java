@@ -58,12 +58,11 @@ public class CurvePointControllerTests {
 
     @Test
     void post_curvePoint_validate_ResultHasErrors() throws Exception {
-        CurvePoint curvePoint = new CurvePoint(20,36.5,26.5);
+        CurvePoint curvePoint = new CurvePoint(null,36.5,26.5);
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/curvePoint/validate").
                 contentType(MediaType.APPLICATION_JSON).
-                param("curveId", curvePoint.getCurveId().toString()).
-                param("asOfDate", curvePoint.getAsOfDate().toString()).
+                param("curveId", "").
                 param("value", curvePoint.getValue().toString()).
                 param("term", curvePoint.getTerm().toString());
 
@@ -82,7 +81,6 @@ public class CurvePointControllerTests {
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/curvePoint/validate").
                 contentType(MediaType.APPLICATION_JSON).
                 param("curveId", curvePoint.getCurveId().toString()).
-                param("asOfDate", curvePoint.getAsOfDate().toString()).
                 param("value", curvePoint.getValue().toString()).
                 param("term", curvePoint.getTerm().toString());
 
@@ -125,12 +123,11 @@ public class CurvePointControllerTests {
 
     @Test
     void post_curvePoint_update_ResultHasErrors() throws Exception {
-        CurvePoint curvePoint = new CurvePoint(20,36.5,26.5);
+        CurvePoint curvePoint = new CurvePoint(null,36.5,26.5);
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/curvePoint/update/{id}", 5).
                 contentType(MediaType.APPLICATION_JSON).
-                param("curveId", curvePoint.getCurveId().toString()).
-                param("asOfDate", curvePoint.getAsOfDate().toString()).
+                param("curveId", "").
                 param("value", curvePoint.getValue().toString()).
                 param("term", curvePoint.getTerm().toString());
 
@@ -149,7 +146,6 @@ public class CurvePointControllerTests {
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/curvePoint/update/{id}", 5).
                 contentType(MediaType.APPLICATION_JSON).
                 param("curveId",curvePoint.getCurveId().toString()).
-                param("asOfDate",curvePoint.getAsOfDate().toString()).
                 param("value",curvePoint.getValue().toString()).
                 param("term",curvePoint.getTerm().toString());
         when(curvePointService.save(any())).thenReturn(curvePoint);
