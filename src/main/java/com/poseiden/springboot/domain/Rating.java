@@ -2,6 +2,7 @@ package com.poseiden.springboot.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,10 +25,12 @@ public class Rating {
     private Integer id;
 
     @Size(max = 125)
-    private String moodysRating;
+    @Column(name = "moodysrating")
+    private String moodyRating;
 
     @Size(max = 125)
-    private String sandpRating;
+    @Column(name="sandprating")
+    private String sandRating;
 
     @NotBlank(message = "FitchRating is mandatory")
     @Size(max = 125)
@@ -35,4 +38,26 @@ public class Rating {
 
     @NotNull(message = "must not be null")
     private Integer orderNumber;
+
+    /**
+     * Empty constructor
+     */
+    public Rating(){}
+
+    /**
+     * Constructor with properties initialization
+     * @param moodyRating moodysRating
+     * @param sandpRating sandpRating
+     * @param fitchRating fitchRating
+     * @param orderNumber orderNumer
+     */
+    public Rating(String moodyRating, String sandRating, String fitchRating, Integer orderNumber)
+    {
+        this.moodyRating = moodyRating;
+        this.sandRating =sandRating;
+        this.fitchRating=fitchRating;
+        this.orderNumber = orderNumber;
+    }
+
+
 }

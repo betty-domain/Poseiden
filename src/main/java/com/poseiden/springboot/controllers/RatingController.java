@@ -1,6 +1,8 @@
 package com.poseiden.springboot.controllers;
 
 import com.poseiden.springboot.domain.Rating;
+import com.poseiden.springboot.services.IRatingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,10 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/**
+ * Controller in charge of any request related to Rating entity
+ */
 @Controller
 public class RatingController {
-    // TODO: Inject Rating service
+    @Autowired
+    IRatingService ratingService;
 
+    /**
+     * Return Rating List page content
+     *
+     * @param model list of Rating
+     * @return Rating List page
+     */
     @RequestMapping("/rating/list")
     public String home(Model model)
     {
@@ -22,23 +34,53 @@ public class RatingController {
         return "rating/list";
     }
 
+    /**
+     * Return the add rating page
+     *
+     * @param rating rating entity to add
+     * @return add rating page
+     */
     @GetMapping("/rating/add")
     public String addRatingForm(Rating rating) {
         return "rating/add";
     }
 
+    /**
+     * Create a rating if valid
+     *
+     * @param rating    rating to create
+     * @param result contains errors if rating is not valid
+     * @param model  list of rating
+     * @return list of rating page if added rating is valid, stay at rating/add page otherwise
+     */
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Rating list
         return "rating/add";
     }
 
+    /**
+     * Return filled update rating page for a specific rating
+     *
+     * @param id    id of rating to update
+     * @param model rating to Update
+     * @return update rating page, can throw IllegalArgumentException if id of rating is invalid
+     */
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Rating by Id and to model then show to the form
         return "rating/update";
     }
 
+    /**
+     * Update a rating if valid
+     *
+     * @param id      if of rating to update
+     * @param rating rating with modified values
+     * @param result  contains errors if rating is not invalid
+     * @param model   list of rating
+     * @return list of rating page if updated rating is valid, stay at rating/update page otherwise
+     */
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                              BindingResult result, Model model) {
@@ -46,6 +88,13 @@ public class RatingController {
         return "redirect:/rating/list";
     }
 
+    /**
+     * Delete rating by Id
+     *
+     * @param id    id of rating to delete
+     * @param model List of rating if id is valid
+     * @return rating's List page if id is valid, throw IllegalArgumentException otherwise
+     */
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Rating by Id and delete the Rating, return to Rating list
