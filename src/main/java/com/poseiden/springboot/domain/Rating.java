@@ -47,7 +47,7 @@ public class Rating {
     /**
      * Constructor with properties initialization
      * @param moodyRating moodysRating
-     * @param sandpRating sandpRating
+     * @param sandRating sandpRating
      * @param fitchRating fitchRating
      * @param orderNumber orderNumer
      */
