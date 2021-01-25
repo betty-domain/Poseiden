@@ -2,6 +2,7 @@ package com.poseiden.springboot.controllers;
 
 import com.poseiden.springboot.domain.CurvePoint;
 import com.poseiden.springboot.services.ICurvePointService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,14 +15,14 @@ import javax.validation.Valid;
 
 @Controller
 public class CurveController {
-    // TODO: Inject Curve Point service
 
+    @Autowired
     ICurvePointService curvePointService;
 
     @RequestMapping("/curvePoint/list")
     public String home(Model model)
     {
-        // TODO: find all Curve Point, add to model
+        model.addAttribute("curvePointList",curvePointService.findAll());
         return "curvePoint/list";
     }
 
