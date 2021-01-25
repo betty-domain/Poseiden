@@ -29,6 +29,7 @@ class BidListControllerTests {
     @Autowired
     MockMvc mockMvc;
 
+    //TDO changer les tests
     @MockBean
     BidListRepository bidListRepository;
 

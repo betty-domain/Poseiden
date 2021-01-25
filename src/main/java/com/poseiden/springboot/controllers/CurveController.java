@@ -1,6 +1,7 @@
 package com.poseiden.springboot.controllers;
 
 import com.poseiden.springboot.domain.CurvePoint;
+import com.poseiden.springboot.services.ICurvePointService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,8 @@ import javax.validation.Valid;
 @Controller
 public class CurveController {
     // TODO: Inject Curve Point service
+
+    ICurvePointService curvePointService;
 
     @RequestMapping("/curvePoint/list")
     public String home(Model model)

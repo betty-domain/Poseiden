@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -20,6 +21,7 @@ public class CurvePoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull(message = "must not be null")
     private Integer curveId;
 
     private LocalDateTime asOfDate;
@@ -29,4 +31,14 @@ public class CurvePoint {
     private Double value;
 
     private LocalDateTime creationDate;
+
+    public CurvePoint(){}
+
+    public CurvePoint(Integer curveId, double term, double value){
+        this.curveId = curveId;
+        this.term = term;
+        this.value = value;
+    }
+
+
 }
