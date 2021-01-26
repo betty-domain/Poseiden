@@ -12,6 +12,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+/**
+ * Trade Entity
+ */
 @Data
 @Entity
 @Table(name = "trade")
