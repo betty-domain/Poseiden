@@ -1,15 +1,88 @@
 package com.poseiden.springboot.domain;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import java.sql.Timestamp;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
-
-@Component
-//@Entity
-/*@Table(name = "trade")*/
+@Entity
+@Table(name = "trade")
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
+
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer tradeId;
+
+    @NotBlank(message = "Account is mandatory")
+    @Size(max = 30)
+    @Column(length = 30, nullable = false)
+    private String account;
+
+    @NotBlank(message="Type is mandatory")
+    @Size(max = 30)
+    @Column(length = 30, nullable = false)
+    private String type;
+
+    private Double buyQuantity;
+
+    private Double sellQuantity;
+
+    private Double buyPrice;
+
+    private Double sellPrice;
+
+    private LocalDateTime tradeDate;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String security;
+
+    @Size(max=10)
+    @Column(length = 10)
+    private String status;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String trader;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String benchmark;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String book;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String creationName;
+
+    private LocalDateTime creationDate;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String revisionName;
+
+    private LocalDateTime revisionDate;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String dealName;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String dealType;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String sourceListId;
+
+    @Size(max = 125)
+    @Column(length = 125)
+    private String side;
+
 }
