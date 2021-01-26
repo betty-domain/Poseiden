@@ -173,6 +173,7 @@ public class TradeControllerTests {
         trade.setBuyQuantity(14.75);
         trade.setSellQuantity(258.0);
         trade.setTradeId(5);
+
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/trade/update/{id}",5).
                 contentType(MediaType.APPLICATION_JSON).
                 param("account",trade.getAccount()).
@@ -180,6 +181,7 @@ public class TradeControllerTests {
                 param("buyQuantity", trade.getBuyQuantity().toString()).
                 param("sellQuantity",trade.getSellQuantity().toString()).
                 param("buyPrice", trade.getBuyPrice().toString()).
+                param("tradeId",trade.getTradeId().toString()).
                 param("sellPrice", trade.getSellPrice().toString());
 
         when(tradeService.save(any())).thenReturn(trade);
