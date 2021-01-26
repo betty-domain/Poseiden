@@ -12,7 +12,7 @@ public interface ITradeService {
 
     /**
      * get all existing trade
-     * @return list of rulename, can be empty
+     * @return list of trade, can be empty
      */
     List<Trade> findAll();
 

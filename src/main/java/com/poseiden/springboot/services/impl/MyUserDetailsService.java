@@ -1,4 +1,4 @@
-package com.poseiden.springboot.services;
+package com.poseiden.springboot.services.impl;
 
 import com.poseiden.springboot.domain.User;
 import com.poseiden.springboot.repositories.UserRepository;

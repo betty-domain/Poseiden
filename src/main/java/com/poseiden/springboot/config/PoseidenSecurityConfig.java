@@ -1,6 +1,6 @@
 package com.poseiden.springboot.config;
 
-import com.poseiden.springboot.services.MyUserDetailsService;
+import com.poseiden.springboot.services.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
