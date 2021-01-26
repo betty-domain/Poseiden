@@ -1,18 +1,17 @@
 package com.poseiden.springboot;
-/*
-import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.repositories.TradeRepository;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import com.poseiden.springboot.domain.Trade;
+import com.poseiden.springboot.repositories.TradeRepository;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 public class TradeTests {
 
@@ -25,22 +24,22 @@ public class TradeTests {
 
 		// Save
 		trade = tradeRepository.save(trade);
-		Assert.assertNotNull(trade.getTradeId());
-		Assert.assertTrue(trade.getAccount().equals("Trade Account"));
+		assertThat(trade.getTradeId()).isNotNull();
+		assertThat(trade.getAccount()).isEqualTo("Trade Account");
 
 		// Update
 		trade.setAccount("Trade Account Update");
 		trade = tradeRepository.save(trade);
-		Assert.assertTrue(trade.getAccount().equals("Trade Account Update"));
+		assertThat(trade.getAccount()).isEqualTo("Trade Account Update");
 
 		// Find
 		List<Trade> listResult = tradeRepository.findAll();
-		Assert.assertTrue(listResult.size() > 0);
+		assertThat(listResult.size()).isGreaterThan(0);
 
 		// Delete
 		Integer id = trade.getTradeId();
 		tradeRepository.delete(trade);
 		Optional<Trade> tradeList = tradeRepository.findById(id);
-		Assert.assertFalse(tradeList.isPresent());
+		assertThat(tradeList.isPresent()).isFalse();
 	}
-}*/
+}

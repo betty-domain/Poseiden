@@ -3,6 +3,7 @@ TRUNCATE bidlist ;
 TRUNCATE curvepoint;
 TRUNCATE rating;
 TRUNCATE rulename;
+truncate trade;
 
 /*insert bidList*/
 INSERT INTO `bidlist` (`account`, `type`, `bidQuantity`)
@@ -32,4 +33,10 @@ VALUES ('name 1','description rule 1', null,null,null,null); /*id=1*/
 INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sqlPart`)
 VALUES ('name rule 2','description rule to delete', 'json','template','sqlStr','sqlPart');/*id=2*/
 
+
+/*insert trade */
+INSERT INTO `trade` ( `account`, `type`, `buyQuantity`, `sellQuantity`, `buyPrice`, `sellPrice`)
+VALUES ('account 1', 'type Account 1', 25.5,42.5,45.5,500);/*1*/
+INSERT INTO `trade` ( `account`, `type`, `buyQuantity`, `sellQuantity`, `buyPrice`, `sellPrice`)
+VALUES ('account 2', 'type to delete', null,null ,null,null);/*2*/
 

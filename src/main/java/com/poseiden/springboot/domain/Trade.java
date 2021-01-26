@@ -1,5 +1,7 @@
 package com.poseiden.springboot.domain;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Table(name = "trade")
 public class Trade {
@@ -85,4 +88,14 @@ public class Trade {
     @Column(length = 125)
     private String side;
 
+    /**
+     * Constructor without properties initialization
+     */
+    public Trade(){}
+
+    public Trade(String account, String type)
+    {
+        this.account = account;
+        this.type = type;
+    }
 }
