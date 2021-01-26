@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/**
+ * Controller in charge of any request related to RuleName entity
+ */
 @Controller
 public class RuleNameController {
     @Autowired
