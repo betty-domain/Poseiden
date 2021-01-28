@@ -78,7 +78,7 @@ public class UserControllerTests {
 
     @Test
     void post_user_validate_isOk_RedirectToBidList() throws Exception {
-        User user = new User("username","password", "fullname","ROLE");
+        User user = new User("username","Password1@", "fullname","ROLE");
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/validate").
                 contentType(MediaType.APPLICATION_JSON).
@@ -147,7 +147,7 @@ public class UserControllerTests {
     @Test
     void post_user_update_isOk_RedirectToBidList() throws Exception {
 
-        User user = new User("username","password", "fullname","ROLE");
+        User user = new User("username","Password1@", "fullname","ROLE");
         user.setId(5);
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/update/{id}",5).

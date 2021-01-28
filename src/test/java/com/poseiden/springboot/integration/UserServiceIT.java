@@ -26,7 +26,7 @@ public class UserServiceIT {
     @Test
     void saveUser()
     {
-        User user = new User("username","password","fullname","USER");
+        User user = new User("username","Password1@","fullname","USER");
 
         // Save
         user = userService.save(user);

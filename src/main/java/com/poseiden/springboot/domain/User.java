@@ -22,7 +22,9 @@ public class User implements UserDetails {
     private Integer id;
     @NotBlank(message = "Username is mandatory")
     private String username;
+
     @NotBlank(message = "Password is mandatory")
+    @ValidPassword
     private String password;
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
