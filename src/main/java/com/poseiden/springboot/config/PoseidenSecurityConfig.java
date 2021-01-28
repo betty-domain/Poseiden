@@ -24,11 +24,11 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Override Default Authentication Provider. Set custon UserDetailsService and PasswordEncoder
+     *
      * @return Custom DaoAuthentication Provider
      */
     @Bean
-    public AuthenticationProvider authProvider()
-    {
+    public AuthenticationProvider authProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
@@ -37,6 +37,7 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Register the custom Authentication Provider into the AuthenticationManagerBuilder
+     *
      * @param auth AuthenticationManagerBuilder
      * @throws Exception if an error occurs
      */
@@ -47,18 +48,22 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Define which URL paths sould be secured and which should not.
+     *
      * @param http HttpSecurity to configure
      * @throws Exception if an error occurs
      */
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
-            http.authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/app/*").permitAll()
                 .antMatchers("/user/*").permitAll()
-                .and().formLogin().loginPage("/login").failureUrl("/")
-                .defaultSuccessUrl("/bidList/list.html",true)
-        .and().exceptionHandling().accessDeniedPage("/403.html");
+                .anyRequest().authenticated()
+                .and().formLogin().loginPage("/app/login").
+                    failureUrl("/app/login-error").
+                    defaultSuccessUrl("/bidList/list", true).permitAll()
+                .and().logout().logoutUrl("/app-logout").permitAll()
+                .and().exceptionHandling().accessDeniedPage("/403.html");
 
     }
 }
