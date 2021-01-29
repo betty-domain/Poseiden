@@ -2,6 +2,7 @@ package com.poseiden.springboot.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,22 +25,28 @@ public class RuleName {
 
     @NotBlank(message = "Name is mandatory")
     @Size(max = 125)
+    @Column(length = 125)
     private String name;
 
     @NotBlank(message = "Description is mandatory")
     @Size(max = 125)
+    @Column(length = 125)
     private String description;
 
     @Size(max = 125)
+    @Column(length = 125)
     private String json;
 
     @Size(max = 512)
+    @Column(length = 512)
     private String template;
 
     @Size(max = 125)
+    @Column(length = 125)
     private String sqlStr;
 
     @Size(max = 125)
+    @Column(length = 125)
     private String sqlPart;
 
     /**
