@@ -54,16 +54,21 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-
+//TODO à revoir sur la partie rôle ADMIN
         http.authorizeRequests()
                 .antMatchers("/app/*").permitAll()
-                .antMatchers("/user/*").permitAll()
+                .antMatchers("/user/*").hasRole("ADMIN")
+                .antMatchers("/bidList/*").permitAll()
+                .antMatchers("/curvePoint/*").permitAll()
+                .antMatchers("/rating/*").permitAll()
+                .antMatchers("/ruleName/*").permitAll()
+                .antMatchers("/trade/*").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/app/login").
                     failureUrl("/app/login-error").
                     defaultSuccessUrl("/bidList/list", true).permitAll()
                 .and().logout().logoutUrl("/app-logout").permitAll()
-                .and().exceptionHandling().accessDeniedPage("/403.html");
+                .and().exceptionHandling().accessDeniedPage("/app/error");
 
     }
 }

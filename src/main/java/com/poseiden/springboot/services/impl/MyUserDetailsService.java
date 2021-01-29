@@ -3,6 +3,7 @@ package com.poseiden.springboot.services.impl;
 import com.poseiden.springboot.domain.User;
 import com.poseiden.springboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class MyUserDetailsService implements UserDetailsService {
      * @throws UsernameNotFoundException if user is not found
      */
     @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
 
         if (!user.isPresent())
