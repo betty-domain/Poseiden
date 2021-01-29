@@ -25,15 +25,16 @@ public class Rating {
     private Integer id;
 
     @Size(max = 125)
-    @Column(name = "moodysrating")
+    @Column(name = "moodysrating", length = 125)
     private String moodyRating;
 
     @Size(max = 125)
-    @Column(name="sandprating")
+    @Column(name="sandprating", length = 125)
     private String sandRating;
 
     @NotBlank(message = "FitchRating is mandatory")
     @Size(max = 125)
+    @Column(length = 125)
     private String fitchRating;
 
     @NotNull(message = "must not be null")
