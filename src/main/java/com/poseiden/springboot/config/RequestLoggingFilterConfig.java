@@ -15,7 +15,7 @@ public class RequestLoggingFilterConfig {
      * Define logFilter attributes
      */
     public CommonsRequestLoggingFilter logFilter()
-    {//TODO : à revoir avec Alexadnre pour vérifier que cela suffit comme log sur l'ensemble des endppoints
+    {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
         filter.setIncludeClientInfo(true);
         filter.setIncludeQueryString(true);

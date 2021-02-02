@@ -54,10 +54,10 @@ public class PoseidenSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-//TODO à revoir sur la partie rôle ADMIN
+
         http.authorizeRequests()
-                .antMatchers("/app/*").permitAll()
                 .antMatchers("/user/*").hasRole("ADMIN")
+                .antMatchers("/app/*").permitAll()
                 .antMatchers("/bidList/*").permitAll()
                 .antMatchers("/curvePoint/*").permitAll()
                 .antMatchers("/rating/*").permitAll()
